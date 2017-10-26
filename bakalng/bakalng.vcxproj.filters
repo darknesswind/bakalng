@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="scanner">
+      <UniqueIdentifier>{20372882-4941-4e20-b18e-27fe79432eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{47467dda-21da-4f35-a343-476873f9b434}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -21,12 +27,30 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="scanner\scanner.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="base\token.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\stringpool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="bakalng.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="scanner\scanner.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="base\token.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\stringpool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
