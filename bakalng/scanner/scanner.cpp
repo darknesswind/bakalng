@@ -22,7 +22,11 @@ void Scanner::procFileScope(LTextStream& stream)
 {
 	enum State
 	{
-
+		stNormal,
 	};
+	while (!stream.isEnd())
+	{
+		char16_t ch = stream.readChar();
 
+	}
 }
