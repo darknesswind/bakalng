@@ -30,14 +30,11 @@
     <ClInclude Include="scanner\scanner.h">
       <Filter>scanner</Filter>
     </ClInclude>
-    <ClInclude Include="base\token.h">
+    <ClInclude Include="base\stringpool.h">
       <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="base\stringpool.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="token.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="scanner\lextoken.h">
+      <Filter>scanner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -50,14 +47,11 @@
     <ClCompile Include="scanner\scanner.cpp">
       <Filter>scanner</Filter>
     </ClCompile>
-    <ClCompile Include="base\token.cpp">
+    <ClCompile Include="base\stringpool.cpp">
       <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="base\stringpool.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="token.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="scanner\lextoken.cpp">
+      <Filter>scanner</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

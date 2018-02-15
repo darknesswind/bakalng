@@ -1,16 +1,19 @@
 #pragma once
-class Token
+class LexToken
 {
 public:
 	enum Type
 	{
 		tkUnknown,
 		tkIdentifier,
+		tkKeyword,
+		tkOperation,
+		tkNumber,
 		tkString,
 	};
 public:
-	Token();
-	~Token();
+	LexToken();
+	~LexToken();
 
 private:
 	Type m_type{ tkUnknown };

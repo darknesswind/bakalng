@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "LTextStream.h"
 #include "LString.h"
-#include "token.h"
+#include "LexToken.h"
 
 class Scanner
 {
@@ -38,7 +38,7 @@ private:
 private:
 	LTextStream m_stream;
 	std::vector<State> m_stkState;
-	std::vector<Token> m_tokens;
+	std::vector<LexToken> m_tokens;
 
 	LString m_buf;
 	size_t m_line{ 0 };
