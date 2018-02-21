@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bakalng", "bakalng\bakalng.vcxproj", "{3CC72566-ED4D-4DD8-B40A-DAF914E080FC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lutil", "lutil\lutil.vcxproj", "{3AB57555-9FCE-465A-A8FC-D8567777071A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScannerTest", "ScannerTest\ScannerTest.vcxproj", "{7A42861D-9738-47B9-95ED-40E6869FE45F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{3AB57555-9FCE-465A-A8FC-D8567777071A}.Release|x64.Build.0 = Release|x64
 		{3AB57555-9FCE-465A-A8FC-D8567777071A}.Release|x86.ActiveCfg = Release|Win32
 		{3AB57555-9FCE-465A-A8FC-D8567777071A}.Release|x86.Build.0 = Release|Win32
+		{7A42861D-9738-47B9-95ED-40E6869FE45F}.Debug|x64.ActiveCfg = Debug|x64
+		{7A42861D-9738-47B9-95ED-40E6869FE45F}.Debug|x64.Build.0 = Debug|x64
+		{7A42861D-9738-47B9-95ED-40E6869FE45F}.Debug|x86.ActiveCfg = Debug|Win32
+		{7A42861D-9738-47B9-95ED-40E6869FE45F}.Debug|x86.Build.0 = Debug|Win32
+		{7A42861D-9738-47B9-95ED-40E6869FE45F}.Release|x64.ActiveCfg = Release|x64
+		{7A42861D-9738-47B9-95ED-40E6869FE45F}.Release|x64.Build.0 = Release|x64
+		{7A42861D-9738-47B9-95ED-40E6869FE45F}.Release|x86.ActiveCfg = Release|Win32
+		{7A42861D-9738-47B9-95ED-40E6869FE45F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+  <Type Name="HString">
+    <DisplayString>{handle,su}</DisplayString>
+    <StringView>handle,su</StringView>
+  </Type>
+
+  <Type Name="LexToken">
+    <DisplayString Condition="m_type == tkOperation">op{m_operation.m_type}</DisplayString>
+    <DisplayString Condition="m_type == tkComment">Comment: {m_hString}</DisplayString>
+    <DisplayString Condition="m_type == tkString">{m_hString}</DisplayString>
+    <DisplayString Condition="m_type == tkNumInt32">(int){m_int32}</DisplayString>
+    <DisplayString Condition="m_type == tkNumUInt32">(uint){m_uint32}</DisplayString>
+    <DisplayString Condition="m_type == tkNumInt64">(int64){m_int64}</DisplayString>
+    <DisplayString Condition="m_type == tkNumUInt64">(uint64){m_uint64}</DisplayString>
+    <DisplayString Condition="m_type == tkNumDouble">(double){m_float64}</DisplayString>
+  </Type>
+</AutoVisualizer>

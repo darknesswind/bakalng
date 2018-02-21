@@ -1,9 +1,7 @@
 #pragma once
 #include <unordered_set>
 #include "LString.h"
-#include "lrefobject.h"
 
-struct HString { const void* handle = nullptr; };
 class StringPool
 {
 public:
@@ -14,6 +12,7 @@ public:
 	const char16_t* getString(HString handle);
 
 public:
+	static StringPool& inst();
 
 private:
 	const static size_t c_blockSize = 0x1000;
@@ -23,7 +22,6 @@ private:
 		MemBlock memory;
 		size_t freeSize{ c_blockSize };
 	};
-	typedef LRefObject<Block> BlockItem;
 	struct HashItem
 	{
 		size_t size;

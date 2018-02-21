@@ -13,7 +13,7 @@ StringPool::~StringPool()
 
 HString StringPool::insert(const LString& str)
 {
-	if (str.size() > c_blockSize)
+	if (str.empty() || str.size() > c_blockSize)
 		return HString{ nullptr };
 
 	auto iterSet = m_set.find(HashItem{ str.size(), str.c_str() });
@@ -52,5 +52,14 @@ HString StringPool::insert(const LString& str)
 
 const char16_t* StringPool::getString(HString handle)
 {
-	return reinterpret_cast<const char16_t*>(handle.handle);
+	if (handle.handle)
+		return reinterpret_cast<const char16_t*>(handle.handle);
+	else
+		return u"";
+}
+
+StringPool& StringPool::inst()
+{
+	static StringPool instance;
+	return instance;
 }

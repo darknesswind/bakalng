@@ -5,43 +5,47 @@
 
 class Scanner
 {
-	enum StateType
-	{
-		stNormal,
-		stString,
-		stMax,
-	};
-	struct State
-	{
-		StateType type;
-		size_t beginLine;
-		size_t beginChar;
-	};
 public:
 	Scanner();
 	~Scanner();
 
-	void scan(const char* szFile);
+	void scan(const char* pFileName);
+	void scan(const void* pRawData, size_t size);
+	const LexTokens& tokens() { return m_tokens; }
 
 private:
-	void enterState(StateType st);
-	void leaveState(StateType st);
-
-	typedef void (Scanner::*FuncProcState)(char16_t);
-	void procFileScope(char16_t ch);
-	void procStringScope(char16_t ch);
+	void proc();
+	bool procSpecialChar(char16_t ch);
+	void procLineComment();
+	void procScopeComment();
+	void procString();
+	void procNumber();
+	void procFloatPoint();
+	void procSciFloat();
+	void procHex();
+	void procOct();
+	void procBin();
+	void procIdentifier();
 
 private:
-	void genStringToken(const State& st);
-	
+	LexToken::Location currLocation();
+	void updateLastTokenLoc();
+	void clearBuffer();
+	bool matchOperation(char16_t ch);
+
+private:
+	void genOperToken(Operation op);
+	void genCommentToken(const LString& comment);
+	void genStringToken(const LString& context);
+	void genError(Errors err);
+	void genIntegerToken(uint64_t val);
+	void genDoubleToken();
 
 private:
 	LTextStream m_stream;
-	std::vector<State> m_stkState;
-	std::vector<LexToken> m_tokens;
-
+	LexTokens m_tokens;
+	LexToken::Location m_startLoc{ 0 };
 	LString m_buf;
-	size_t m_line{ 0 };
-	size_t m_char{ 0 };
+	HString m_hSource;
 };
 
