@@ -40,6 +40,7 @@ private:
 	void genError(Errors err);
 	void genIntegerToken(uint64_t val);
 	void genDoubleToken();
+	void genIdentifierToken();
 
 private:
 	LTextStream m_stream;

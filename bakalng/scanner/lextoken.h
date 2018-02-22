@@ -34,7 +34,7 @@ public:
 	LexToken(Errors err) : m_type(tkError), m_error(err) { }
 	LexToken(HString hString, Type type = tkString) : m_type(type), m_hString(hString)
 	{
-		assert(type == tkString || type == tkComment);
+		assert(type == tkString || type == tkComment || type == tkIdentifier || type == tkKeyword);
 	}
 	LexToken(int32_t vsint) : m_type(tkNumInt32), m_int32(vsint) { }
 	LexToken(uint32_t vuint) : m_type(tkNumUInt32), m_uint32(vuint) { }
@@ -47,12 +47,17 @@ public:
 	const Location& location() const { return m_loc; }
 	void setLocation(const Location& loc) { m_loc = loc; }
 
+	Operation operation() const { assert(m_type == tkOperation); return m_operation; }
 	int32_t int32() const { assert(m_type == tkNumInt32); return m_int32; }
 	uint32_t uint32() const { assert(m_type == tkNumUInt32); return m_uint32; }
 	int64_t int64() const { assert(m_type == tkNumInt64); return m_int64; }
 	uint64_t uint64() const { assert(m_type == tkNumUInt64); return m_uint64; }
 	float float32() const { assert(m_type == tkNumFloat); return m_float32; }
 	double float64() const { assert(m_type == tkNumDouble); return m_float64; }
+
+	bool isType(Type t) const { return (m_type == t); }
+	bool isOperation() const { return isType(tkOperation); }
+	bool isOperation(Operation::Type op) const { return (isOperation() && m_operation == op); }
 
 private:
 	Type m_type{ tkUnknown };

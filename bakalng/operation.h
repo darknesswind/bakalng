@@ -13,7 +13,7 @@ class Operation
 public:
 	enum Type : uint32_t
 	{
-		None,
+		None		= Prop<Wide<0>, Precedence<0>>::Value,
 
 		Scope		= Prop<Wide<2>, Precedence<1>>::Value,	// ::
 
@@ -73,6 +73,7 @@ public:
 	Operation(Type type) : m_type(type) {}
 	operator Type() const { return m_type; }
  	size_t size() const { return m_flags.fWide; }
+	size_t precedence() const { return m_flags.fPrecedence; }
 
 private:
 	union

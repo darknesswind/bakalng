@@ -33,7 +33,6 @@ Scanner::Scanner()
 {
 }
 
-
 Scanner::~Scanner()
 {
 }
@@ -67,10 +66,8 @@ void Scanner::proc()
 			continue;
 		}
 
-		if (isSplitChar(ch))
-			continue;
-
-		procIdentifier();
+		if (isIdBeginChar(ch))
+			procIdentifier();
 	}
 }
 
@@ -376,7 +373,18 @@ void Scanner::procBin()
 
 void Scanner::procIdentifier()
 {
+	m_buf.resize(0);
+	m_buf.push_back(m_stream.currChar());
+	while (!m_stream.eof())
+	{
+		wchar_t ch = m_stream.peekChar();
+		if (isIdFollowChar(ch))
+			m_buf.push_back(m_stream.readChar());
+		else
+			break;
+	}
 
+	genIdentifierToken();
 }
 
 LexToken::Location Scanner::currLocation()
@@ -472,6 +480,25 @@ bool Scanner::matchOperation(char16_t ch)
 
 void Scanner::genOperToken(Operation op)
 {
+	if (op == Operation::Assign && !m_tokens.empty())
+	{
+		LexToken& token = m_tokens.back();
+		if (token.isOperation() &&
+			token.location().pos + token.operation().size() == m_startLoc.pos)
+		{
+			if (token.operation() == Operation::ShiftLeft)
+			{
+				token = LexToken(Operation::SHLAssign);
+				return;
+			}
+			else if (token.operation() == Operation::ShiftRight)
+			{
+				token = LexToken(Operation::SHRAssign);
+				return;
+			}
+		}
+	}
+
 	m_tokens.emplace_back(LexToken(op));
 	updateLastTokenLoc();
 }
@@ -528,5 +555,13 @@ void Scanner::genDoubleToken()
 			return genError(Errors::E_Scan_InvalidFloat);
 	}
 	m_tokens.emplace_back(LexToken(dbl));
+	updateLastTokenLoc();
+}
+
+void Scanner::genIdentifierToken()
+{
+	// TODO: check keyword
+	HString hStr = StringPool::inst().insert(m_buf);
+	m_tokens.emplace_back(LexToken(hStr, LexToken::tkIdentifier));
 	updateLastTokenLoc();
 }
