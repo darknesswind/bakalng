@@ -32,9 +32,11 @@ public:
 	~LexToken() = default;
 	LexToken(Operation op) : m_type(tkOperation), m_operation(op) { }
 	LexToken(Errors err) : m_type(tkError), m_error(err) { }
-	LexToken(HString hString, Type type = tkString) : m_type(type), m_hString(hString)
+	LexToken(HString hString, Type type = tkString) : m_type(type)
 	{
 		assert(type == tkString || type == tkComment || type == tkIdentifier || type == tkKeyword);
+		if (type == tkIdentifier) m_identifier.hString = hString;
+		else m_hString = hString;
 	}
 	LexToken(int32_t vsint) : m_type(tkNumInt32), m_int32(vsint) { }
 	LexToken(uint32_t vuint) : m_type(tkNumUInt32), m_uint32(vuint) { }
@@ -66,6 +68,7 @@ private:
 		Operation m_operation;
 		Errors m_error;
 		HString m_hString;
+		Identifier m_identifier;
 		int32_t m_int32;
 		uint32_t m_uint32;
 		int64_t m_int64;

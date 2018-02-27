@@ -1,31 +1,16 @@
 ﻿#include "stdafx.h"
 #include "scanner.h"
 #include "base/stringpool.h"
+#include "identifiers.h"
 
-bool isSplitChar(char16_t ch)
+inline bool isSplitChar(char16_t ch)
 {
 	return (
 		ch == u' ' ||
 		ch == u'\t' ||
 		ch == u'\r' ||
-		ch == u'\n'
-		);
-}
-
-bool isIdBeginChar(char16_t ch)
-{
-	return (
-		ch == u'_' ||
-		(ch >= u'a' && ch <= u'z') ||
-		(ch >= u'A' && ch <= u'Z') ||
-		ch > 0x7F
-		);
-}
-bool isIdFollowChar(char16_t ch)
-{
-	return (
-		isIdBeginChar(ch) ||
-		(ch >= u'0' && ch <= u'9')
+		ch == u'\n' ||
+		ch == u'\v'
 		);
 }
 
@@ -66,7 +51,7 @@ void Scanner::proc()
 			continue;
 		}
 
-		if (isIdBeginChar(ch))
+		if (Identifier::isFirstChar(ch))
 			procIdentifier();
 	}
 }
@@ -378,7 +363,7 @@ void Scanner::procIdentifier()
 	while (!m_stream.eof())
 	{
 		wchar_t ch = m_stream.peekChar();
-		if (isIdFollowChar(ch))
+		if (Identifier::isFollowChar(ch))
 			m_buf.push_back(m_stream.readChar());
 		else
 			break;
@@ -561,6 +546,9 @@ void Scanner::genDoubleToken()
 void Scanner::genIdentifierToken()
 {
 	// TODO: check keyword
+	if (m_buf.size() > Identifier::MaxLength)
+		m_buf.resize(Identifier::MaxLength);
+
 	HString hStr = StringPool::inst().insert(m_buf);
 	m_tokens.emplace_back(LexToken(hStr, LexToken::tkIdentifier));
 	updateLastTokenLoc();
