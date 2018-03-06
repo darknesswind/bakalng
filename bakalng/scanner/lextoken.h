@@ -1,5 +1,6 @@
 #pragma once
 #include "operation.h"
+#include "identifiers.h"
 
 class LexToken
 {

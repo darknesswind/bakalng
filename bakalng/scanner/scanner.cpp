@@ -1,7 +1,6 @@
 ﻿#include "stdafx.h"
 #include "scanner.h"
 #include "base/stringpool.h"
-#include "identifiers.h"
 
 inline bool isSplitChar(char16_t ch)
 {
